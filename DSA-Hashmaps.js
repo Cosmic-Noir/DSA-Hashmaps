@@ -184,3 +184,24 @@ const any = string => {
 };
 
 console.log(any("east"));
+
+// Anagram grouping
+const group = array => {
+  let hash = {};
+
+  array.forEach(string => {
+    let letters = string.split("").sort();
+    hash[letters] ? hash[letters].push(string) : (hash[letters] = [string]);
+  });
+
+  const keys = Object.keys(hash);
+
+  const values = keys.map(function(v) {
+    return hash[v];
+  });
+  return values;
+};
+
+let strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+
+console.log(group(strs));
