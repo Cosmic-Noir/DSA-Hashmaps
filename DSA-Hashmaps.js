@@ -202,6 +202,8 @@ const group = array => {
   return values;
 };
 
-let strs = ["eat", "tea", "tan", "ate", "nat", "bat"];
+let strs = ["east", "cars", "acre", "arcs", "teas", "eats", "race"];
 
 console.log(group(strs));
+
+// Seperate chaining
