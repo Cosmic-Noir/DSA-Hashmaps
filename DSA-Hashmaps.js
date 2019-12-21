@@ -86,3 +86,101 @@ class HashMap {
     return hash >>> 0;
   }
 }
+
+const main = () => {
+  const lotr = new HashMap();
+  lotr.MAX_LOAD_RATIO = 0.5;
+  lotr.SIZE_RATIO = 3;
+  lotr.set("Hobbit", "Bilbo");
+  lotr.set("Hobbit", "Frodo");
+  lotr.set("Wizard", "Gandolf");
+  lotr.set("Human", "Aragon");
+  lotr.set("Elf", "Legolas");
+  lotr.set("Maiar", "The Necromancer");
+  lotr.set("Maiar", "Sauron");
+  lotr.set("RingBearer", "Gollum");
+  lotr.set("LadyOfLight", "Galadriel");
+  lotr.set("HalfElven", "Arwen");
+  lotr.set("Ent", "Treebeard");
+  //   console.log(lotr);
+  //   console.log(lotr.get("Maiar"));
+  //   console.log(lotr.get("Hobbit"));
+  console.log(lotr._capacity);
+};
+
+// main();
+
+// Discrepency because the key was duplicated and the value overwritten.
+
+// The capacity is 8. Because there were 8 non-duplicated key-value pairs.
+
+// What Does this Do
+
+const WhatDoesThisDo = function() {
+  let str1 = "Hello World.";
+  let str2 = "Hello World.";
+  let map1 = new HashMap();
+  map1.set(str1, 10);
+  map1.set(str2, 20);
+  let map2 = new HashMap();
+  let str3 = str1;
+  let str4 = str2;
+  map2.set(str3, 20);
+  map2.set(str4, 10);
+
+  console.log(map1.get(str1));
+  console.log(map2.get(str3));
+};
+
+// To me this looks like it just creates two duplicate hashMaps.
+
+// WhatDoesThisDo();
+
+// Remove Duplicates
+
+const remove = string => {
+  const letters = {};
+  let myString = "";
+  for (let i = 0; i < string.length; i++) {
+    // console.log(string[i]);
+    if (letters[string[i]] === undefined) {
+      letters[string[i]] = true;
+      myString += string[i];
+    }
+  }
+  return myString;
+};
+
+// console.log(remove("tttkkkllliii"));
+
+// Palindrome
+const any = string => {
+  const permutations = [];
+
+  function anagram(string) {
+    if (string.length === 1) {
+      // base case
+      return string;
+    } else {
+      for (let i = 0; i < string.length; i++) {
+        const word = string.substring(0, i) + string.substring(i + 1);
+        const results = anagram(word);
+        for (let j = 0; j < results.length; j++) {
+          permutations.push(string[i] + results[j]);
+        }
+      }
+    }
+  }
+
+  for (let perm in permutations) {
+    for (let i = 0; i < perm.length / 2; i++) {
+      if (s[i] !== s.charAt(s.length - 1 - i)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+};
+
+console.log(any("east"));
